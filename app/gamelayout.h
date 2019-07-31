@@ -2,6 +2,8 @@
 #define GAMELAYOUT_H
 
 #include <QGridLayout>
+#include <QLabel>
+#include <QVBoxLayout>
 #include <QWidget>
 
 #include "cell.h"
@@ -22,6 +24,9 @@ private:
     QTaquin* taquin;
 
     QGridLayout* board;
+    QVBoxLayout* layout;
+
+    QLabel* progressLbl;
 
     std::pair<unsigned, unsigned> zeroCoord;
 

@@ -9,7 +9,13 @@ GameLayout::GameLayout(QTaquin& qTaquin, QWidget* parent)
     , taquin(&qTaquin)
 {
     board = new QGridLayout;
-    setLayout(board);
+
+    layout = new QVBoxLayout;
+    progressLbl = new QLabel("Number of moves : 0");
+    layout->addLayout(board);
+    layout->addWidget(progressLbl);
+
+    setLayout(layout);
 
     connect(taquin, &QTaquin::boardChanged, this, &GameLayout::updateBoard);
 }
@@ -43,4 +49,5 @@ void GameLayout::updateBoard()
             }
         }
     }
+    progressLbl->setText("Number of moves : " + QString::number(taquin->getNumberOfMoves()));
 }

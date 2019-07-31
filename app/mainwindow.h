@@ -1,7 +1,10 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QApplication>
 #include <QMainWindow>
+#include <QMenu>
+#include <QMenuBar>
 #include <QStackedLayout>
 #include <QWidget>
 
@@ -20,6 +23,7 @@ public:
 public slots:
     void startGame();
     void endGame();
+    void restartGame();
 
 private:
     QTaquin* taquin = nullptr;
@@ -30,6 +34,8 @@ private:
     IntroductionLayout* iLayout;
     GameLayout* gLayout;
     EndLayout* eLayout;
+
+    void initMenuBar();
 };
 
 #endif // MAINWINDOW_H
