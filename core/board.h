@@ -7,7 +7,6 @@ class Board {
 public:
     Board(unsigned size);
     unsigned size() const;
-    void display() const;
     std::pair<unsigned, unsigned> getZeroPosition() const;
     std::vector<std::pair<unsigned, unsigned>> getAvailableMovements() const;
     bool areCoordinatesOk(unsigned i, unsigned j) const;

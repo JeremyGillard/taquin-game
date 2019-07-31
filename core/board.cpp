@@ -1,8 +1,6 @@
 #include <algorithm>
 #include <cstdlib>
 #include <ctime>
-#include <iomanip>
-#include <iostream>
 
 #include "board.h"
 
@@ -22,16 +20,6 @@ Board::Board(unsigned size)
         }
     }
     srand(unsigned(time(nullptr)));
-}
-
-void Board::display() const
-{
-    for (unsigned i = 0; i < m_size; ++i) {
-        for (unsigned j = 0; j < m_size; ++j) {
-            std::cout << std::setw(3) << m_board.at(i).at(j);
-        }
-        std::cout << std::endl;
-    }
 }
 
 std::pair<unsigned, unsigned> Board::getZeroPosition() const

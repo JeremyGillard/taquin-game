@@ -68,7 +68,7 @@ std::pair<unsigned, unsigned> View::moveQuestion()
     int chosenOption { -1 };
     do {
         try {
-            std::cout << "Here are the cells you can move. Which one do you choose?\nEnter one of the numbers indicated below the cells coordinates." << std::endl;
+            std::cout << "Here are the cells you can move. Which one do you choose?\nEnter one of the numbers indicated below the cells coordinates (row, col)." << std::endl;
             std::cout << movesOptions;
             std::cout << "Chosen option : ";
             chosenOption = nvs::lineFromKbd<int>();

@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "taquin.h"
 
 Taquin::Taquin()
