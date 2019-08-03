@@ -1,23 +1,22 @@
-#include "introductionlayout.h"
+#include "introductionscene.h"
 
-IntroductionLayout::IntroductionLayout(QTaquin& qTaquin, QWidget* parent)
+IntroductionScene::IntroductionScene(QTaquin& qTaquin, QWidget* parent)
     : QWidget(parent)
     , taquin(&qTaquin)
 {
     initComponents();
-    initUserInformationLayout();
-    initMainLayout();
-    initBehavior();
+    arrangement();
+    behavior();
 }
 
-void IntroductionLayout::initGame()
+void IntroductionScene::initGame()
 {
     taquin->initBoard(static_cast<unsigned>(initSizeBoardCbb->currentData().toInt()));
     taquin->start(static_cast<unsigned>(initDifficultyCbb->currentData().toInt()));
     emit gameIsInitialized();
 }
 
-void IntroductionLayout::initComponents()
+void IntroductionScene::initComponents()
 {
     initSizeBoardLbl = new QLabel("Size of the board");
     initSizeBoardCbb = new QComboBox();
@@ -30,27 +29,29 @@ void IntroductionLayout::initComponents()
 
     title = new QLabel("Taquin");
     startBtn = new QPushButton("Start");
+
+    userInformationLayout = new QGridLayout;
+    mainLayout = new QVBoxLayout;
 }
 
-void IntroductionLayout::initUserInformationLayout()
+void IntroductionScene::initUserInformationLayout()
 {
-    userInformationLayout = new QGridLayout;
     userInformationLayout->addWidget(initSizeBoardLbl, 0, 0);
     userInformationLayout->addWidget(initSizeBoardCbb, 0, 1);
     userInformationLayout->addWidget(initDifficultyLbl, 1, 0);
     userInformationLayout->addWidget(initDifficultyCbb, 1, 1);
 }
 
-void IntroductionLayout::initMainLayout()
+void IntroductionScene::arrangement()
 {
-    mainLayout = new QVBoxLayout;
+    initUserInformationLayout();
     mainLayout->addWidget(title);
     mainLayout->addLayout(userInformationLayout);
     mainLayout->addWidget(startBtn);
     setLayout(mainLayout);
 }
 
-void IntroductionLayout::initBehavior()
+void IntroductionScene::behavior()
 {
-    connect(startBtn, &QPushButton::clicked, this, &IntroductionLayout::initGame);
+    connect(startBtn, &QPushButton::clicked, this, &IntroductionScene::initGame);
 }

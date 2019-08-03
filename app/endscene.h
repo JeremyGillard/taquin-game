@@ -8,14 +8,16 @@
 
 #include "qtaquin.h"
 
-class EndLayout : public QWidget {
+class EndScene : public QWidget {
     Q_OBJECT
 public:
-    explicit EndLayout(QTaquin& qTaquin, QWidget* parent = nullptr);
+    explicit EndScene(QTaquin& qTaquin, QWidget* parent = nullptr);
+    const QPushButton* restartButton() const;
 
 signals:
 
 public slots:
+    void updateScore();
 
 private:
     QTaquin* taquin;
@@ -23,7 +25,11 @@ private:
     QVBoxLayout* layout;
 
     QLabel* endLbl;
+    QLabel* resultLbl;
     QPushButton* restartBtn;
+
+    void initComponents();
+    void arrangement();
 };
 
 #endif // ENDLAYOUT_H

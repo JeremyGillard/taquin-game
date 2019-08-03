@@ -10,10 +10,10 @@
 
 #include "qtaquin.h"
 
-class IntroductionLayout : public QWidget {
+class IntroductionScene : public QWidget {
     Q_OBJECT
 public:
-    explicit IntroductionLayout(QTaquin& qTaquin, QWidget* parent = nullptr);
+    explicit IntroductionScene(QTaquin& qTaquin, QWidget* parent = nullptr);
 
 signals:
     void gameIsInitialized();
@@ -37,8 +37,8 @@ private:
 
     void initComponents();
     void initUserInformationLayout();
-    void initMainLayout();
-    void initBehavior();
+    void arrangement();
+    void behavior();
 };
 
 #endif // INTRODUCTIONLAYOUT_H

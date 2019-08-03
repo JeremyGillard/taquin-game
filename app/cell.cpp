@@ -8,11 +8,16 @@ Cell::Cell(const QString& text, unsigned i, unsigned j, QTaquin& qTaquin, QWidge
     , m_i(i)
     , m_j(j)
 {
-    connect(this, &Cell::clicked, this, [&]() { taquin->moveCellBoard(m_i, m_j); });
     QPushButton::setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+    behavior();
 }
 
 bool Cell::operator==(const Cell& cell) const
 {
     return (m_i == cell.m_i) && (m_j == cell.m_j);
+}
+
+void Cell::behavior()
+{
+    connect(this, &Cell::clicked, this, [&]() { taquin->moveCellBoard(m_i, m_j); });
 }

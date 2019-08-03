@@ -1,12 +1,12 @@
 #include "taquin.h"
 
 Taquin::Taquin()
-    : m_numberOfMoves(0)
 {
 }
 
 void Taquin::initBoard(unsigned size)
 {
+    m_numberOfMoves = 0;
     m_chosenSize = size;
     m_board = std::make_unique<Board>(size);
 }

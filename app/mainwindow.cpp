@@ -1,33 +1,35 @@
 #include "mainwindow.h"
-#include "endlayout.h"
-#include "gamelayout.h"
-#include "introductionlayout.h"
+#include "endscene.h"
+#include "gamescene.h"
+#include "introductionscene.h"
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
 {
     taquin = new QTaquin;
 
-    setFixedSize(450, 600);
+    setFixedSize(450, 550);
     centralWidget = new QWidget();
     layout = new QStackedLayout();
     centralWidget->setLayout(layout);
     setCentralWidget(centralWidget);
 
-    iLayout = new IntroductionLayout(*taquin);
-    gLayout = new GameLayout(*taquin);
-    eLayout = new EndLayout(*taquin);
+    iScene = new IntroductionScene(*taquin);
+    gScene = new GameScene(*taquin);
+    eScene = new EndScene(*taquin);
 
-    layout->addWidget(iLayout);
-    layout->addWidget(gLayout);
-    layout->addWidget(eLayout);
+    layout->addWidget(iScene);
+    layout->addWidget(gScene);
+    layout->addWidget(eScene);
 
-    connect(iLayout, &IntroductionLayout::gameIsInitialized, this, &MainWindow::startGame);
-    connect(iLayout, &IntroductionLayout::gameIsInitialized, gLayout, &GameLayout::initBoard);
+    connect(iScene, &IntroductionScene::gameIsInitialized, this, &MainWindow::startGame);
+    connect(iScene, &IntroductionScene::gameIsInitialized, gScene, &GameScene::initBoard);
     connect(taquin, &QTaquin::gameFinished, this, &MainWindow::endGame);
+    connect(taquin, &QTaquin::gameFinished, eScene, &EndScene::updateScore);
+    connect(eScene->restartButton(), &QPushButton::clicked, this, &MainWindow::restartGame);
 
-    initMenuBar();
-    menuBar()->hide();
+    //initMenuBar();
+    //menuBar()->hide();
 }
 
 MainWindow::~MainWindow()
@@ -37,19 +39,17 @@ MainWindow::~MainWindow()
 void MainWindow::startGame()
 {
     layout->setCurrentIndex(1);
-    menuBar()->show();
+    //menuBar()->show();
 }
 
 void MainWindow::endGame()
 {
     layout->setCurrentIndex(2);
-    menuBar()->hide();
+    //menuBar()->hide();
 }
 
 void MainWindow::restartGame()
 {
-    delete taquin;
-    taquin = new QTaquin;
     layout->setCurrentIndex(0);
 }
 

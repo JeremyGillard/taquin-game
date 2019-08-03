@@ -26,18 +26,18 @@ CONFIG += c++14
 
 SOURCES += \
         cell.cpp \
-        endlayout.cpp \
-        gamelayout.cpp \
-        introductionlayout.cpp \
+        endscene.cpp \
+        gamescene.cpp \
+        introcutionscene.cpp \
         main.cpp \
         mainwindow.cpp \
         qtaquin.cpp
 
 HEADERS += \
         cell.h \
-        endlayout.h \
-        gamelayout.h \
-        introductionlayout.h \
+        endscene.h \
+        gamescene.h \
+        introductionscene.h \
         mainwindow.h \
         qtaquin.h
 

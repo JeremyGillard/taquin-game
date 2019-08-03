@@ -9,10 +9,10 @@
 #include "cell.h"
 #include "qtaquin.h"
 
-class GameLayout : public QWidget {
+class GameScene : public QWidget {
     Q_OBJECT
 public:
-    explicit GameLayout(QTaquin& qTaquin, QWidget* parent = nullptr);
+    explicit GameScene(QTaquin& qTaquin, QWidget* parent = nullptr);
 
 signals:
 
@@ -27,10 +27,12 @@ private:
     QVBoxLayout* layout;
 
     QLabel* progressLbl;
+    QWidget* boardW;
 
-    std::pair<unsigned, unsigned> zeroCoord;
-
-    void removeCells();
+    void initComponents();
+    void arrangement();
+    void reInit();
+    void behavior();
 };
 
 #endif // GAMELAYOUT_H

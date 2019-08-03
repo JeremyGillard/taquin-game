@@ -2,22 +2,23 @@
 #define MAINWINDOW_H
 
 #include <QApplication>
+#include <QDebug>
 #include <QMainWindow>
 #include <QMenu>
 #include <QMenuBar>
 #include <QStackedLayout>
 #include <QWidget>
 
-#include "endlayout.h"
-#include "gamelayout.h"
-#include "introductionlayout.h"
+#include "endscene.h"
+#include "gamescene.h"
+#include "introductionscene.h"
 #include "qtaquin.h"
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget* parent = 0);
+    MainWindow(QWidget* parent = nullptr);
     ~MainWindow();
 
 public slots:
@@ -31,9 +32,9 @@ private:
     QWidget* centralWidget;
     QStackedLayout* layout;
 
-    IntroductionLayout* iLayout;
-    GameLayout* gLayout;
-    EndLayout* eLayout;
+    IntroductionScene* iScene;
+    GameScene* gScene;
+    EndScene* eScene;
 
     void initMenuBar();
 };

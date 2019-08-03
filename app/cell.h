@@ -21,6 +21,8 @@ private:
 
     unsigned m_i;
     unsigned m_j;
+
+    void behavior();
 };
 
 #endif // CELL_H
