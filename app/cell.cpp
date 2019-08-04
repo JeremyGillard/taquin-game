@@ -27,7 +27,6 @@ void Cell::setImgFragment(const QPixmap& pm)
 void Cell::paintEvent(QPaintEvent*)
 {
     QPainter painter(this);
-    //QPixmap pm(":/img/img2");
     painter.drawPixmap(0, 0, m_imgFragment);
     painter.setPen(Qt::gray);
     painter.setFont(QFont("Tahoma", 24));

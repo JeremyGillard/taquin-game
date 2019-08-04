@@ -18,8 +18,9 @@ void Taquin::start(unsigned difficultyLevel)
 
 void Taquin::moveCellBoard(unsigned i, unsigned j)
 {
-    m_board->moveCell(i, j);
-    m_numberOfMoves++;
+    if (m_board->moveCell(i, j)) {
+        m_numberOfMoves++;
+    }
 }
 
 bool Taquin::isOver() const

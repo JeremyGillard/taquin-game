@@ -71,13 +71,15 @@ unsigned Board::getCellAt(unsigned i, unsigned j) const
     return m_board.at(i).at(j);
 }
 
-void Board::moveCell(unsigned i, unsigned j)
+bool Board::moveCell(unsigned i, unsigned j)
 {
     if (areCoordinatesOk(i, j)) {
         std::swap(m_board.at(i).at(j), m_board.at(m_zeroPosition.first).at(m_zeroPosition.second));
         m_zeroPosition.first = i;
         m_zeroPosition.second = j;
+        return true;
     }
+    return false;
 }
 
 void Board::shuffle(unsigned mixNumber)

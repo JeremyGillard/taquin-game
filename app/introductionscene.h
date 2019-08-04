@@ -23,17 +23,15 @@ public slots:
 
 private:
     QTaquin* taquin;
-
-    QGridLayout* userInformationLayout;
-    QVBoxLayout* mainLayout;
-
     QLabel* initSizeBoardLbl;
     QComboBox* initSizeBoardCbb;
     QLabel* initDifficultyLbl;
     QComboBox* initDifficultyCbb;
-
     QLabel* title;
     QPushButton* startBtn;
+
+    QGridLayout* userInformationLayout;
+    QVBoxLayout* mainLayout;
 
     void initComponents();
     void initUserInformationLayout();

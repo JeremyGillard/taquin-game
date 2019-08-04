@@ -1,7 +1,3 @@
-#include <QDebug>
-#include <QLabel>
-#include <QLayoutItem>
-
 #include "gamescene.h"
 
 GameScene::GameScene(QTaquin& qTaquin, QWidget* parent)
@@ -17,7 +13,7 @@ GameScene::GameScene(QTaquin& qTaquin, QWidget* parent)
 
 void GameScene::initBoard()
 {
-    reInit();
+    clearComponents();
     createImgFragments();
     unsigned boardSize = taquin->chosenSize();
     for (unsigned i = 0; i < boardSize; ++i) {
@@ -42,12 +38,21 @@ void GameScene::updateBoard()
             cell->setText(QString::number(cellNumber));
             if (cell->isHidden())
                 cell->show();
-            if (taquin->getCellAt(i, j) == 0) {
+            if (!taquin->isOver() && taquin->getCellAt(i, j) == 0) {
                 board->itemAtPosition(static_cast<int>(i), static_cast<int>(j))->widget()->hide();
             }
         }
     }
     progressLbl->setText("Number of moves : " + QString::number(taquin->getNumberOfMoves()));
+}
+
+void GameScene::finalBoard()
+{
+    QLabel fullImage;
+    int boardSize = static_cast<int>(taquin->chosenSize());
+    fullImage.setPixmap((currentImg));
+    board->addWidget(&fullImage, 0, 0, boardSize, boardSize);
+    emit finalBoardDisplayed();
 }
 
 void GameScene::initComponents()
@@ -71,7 +76,7 @@ void GameScene::arrangement()
     layout->setSpacing(15);
 }
 
-void GameScene::reInit()
+void GameScene::clearComponents()
 {
     if (boardW != nullptr) {
         delete board;
@@ -93,24 +98,22 @@ void GameScene::createImgFragments()
     if (imgFragments.size() != 0) {
         imgFragments.clear();
     }
-    QPixmap pm = loadRandomImg();
+    loadRandomImg();
     int boardSize = static_cast<int>(taquin->chosenSize());
-    int fragmentSize = pm.height() / boardSize;
+    int fragmentSize = currentImg.height() / boardSize;
 
     for (int i = 0; i < boardSize; ++i) {
         for (int j = 0; j < boardSize; ++j) {
             int size1 = i * fragmentSize;
             int size2 = j * fragmentSize;
-            imgFragments.push_back(pm.copy(size2, size1, fragmentSize, fragmentSize));
+            imgFragments.push_back(currentImg.copy(size2, size1, fragmentSize, fragmentSize));
         }
     }
     imgFragments.push_front(imgFragments.takeLast());
 }
 
-QPixmap GameScene::loadRandomImg()
+void GameScene::loadRandomImg()
 {
     unsigned chosenImg = rand() % 4;
-    QPixmap pixmap(":/img/img" + QString::number(chosenImg));
-    qDebug() << "loadRandomImg" << endl;
-    return pixmap;
+    currentImg = QPixmap(":/img/img" + QString::number(chosenImg));
 }

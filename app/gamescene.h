@@ -1,14 +1,17 @@
 #ifndef GAMELAYOUT_H
 #define GAMELAYOUT_H
 
+#include <QDebug>
 #include <QGridLayout>
 #include <QLabel>
 #include <QList>
 #include <QPixmap>
 #include <QVBoxLayout>
 #include <QWidget>
+#include <chrono>
 #include <cstdlib>
 #include <ctime>
+#include <thread>
 
 #include "cell.h"
 #include "qtaquin.h"
@@ -19,29 +22,29 @@ public:
     explicit GameScene(QTaquin& qTaquin, QWidget* parent = nullptr);
 
 signals:
+    void finalBoardDisplayed();
 
 public slots:
     void initBoard();
     void updateBoard();
+    void finalBoard();
 
 private:
     QTaquin* taquin;
+    QLabel* progressLbl;
+    QWidget* boardW;
+    QList<QPixmap> imgFragments;
+    QPixmap currentImg;
 
     QGridLayout* board;
     QVBoxLayout* layout;
 
-    QLabel* progressLbl;
-    QWidget* boardW;
-
     void initComponents();
     void arrangement();
-    void reInit();
+    void clearComponents();
     void behavior();
-
-    QList<QPixmap> imgFragments;
-
     void createImgFragments();
-    QPixmap loadRandomImg();
+    void loadRandomImg();
 };
 
 #endif // GAMELAYOUT_H

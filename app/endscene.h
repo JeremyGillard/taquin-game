@@ -21,12 +21,11 @@ public slots:
 
 private:
     QTaquin* taquin;
-
-    QVBoxLayout* layout;
-
     QLabel* endLbl;
     QLabel* resultLbl;
     QPushButton* restartBtn;
+
+    QVBoxLayout* layout;
 
     void initComponents();
     void arrangement();

@@ -13,7 +13,7 @@ public:
     bool operator==(const Board& board) const;
     unsigned getCellAt(unsigned i, unsigned j) const;
 
-    void moveCell(unsigned i, unsigned j);
+    bool moveCell(unsigned i, unsigned j);
     void shuffle(unsigned mixNumber);
 
 private:

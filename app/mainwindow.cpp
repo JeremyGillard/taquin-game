@@ -26,8 +26,9 @@ MainWindow::MainWindow(QWidget* parent)
 
     connect(iScene, &IntroductionScene::gameIsInitialized, this, &MainWindow::startGame);
     connect(iScene, &IntroductionScene::gameIsInitialized, gScene, &GameScene::initBoard);
-    connect(taquin, &QTaquin::gameFinished, this, &MainWindow::endGame);
+    connect(taquin, &QTaquin::gameFinished, gScene, &GameScene::finalBoard);
     connect(taquin, &QTaquin::gameFinished, eScene, &EndScene::updateScore);
+    connect(gScene, &GameScene::finalBoardDisplayed, this, &MainWindow::endGame);
     connect(eScene->restartButton(), &QPushButton::clicked, this, &MainWindow::restartGame);
 
     QFile styleFile(":/stylesheets/style");
@@ -35,9 +36,6 @@ MainWindow::MainWindow(QWidget* parent)
     QString style(styleFile.readAll());
     qApp->setStyle(QStyleFactory::keys().at(2));
     qApp->setStyleSheet(style);
-
-    //initMenuBar();
-    //menuBar()->hide();
 }
 
 MainWindow::~MainWindow()
@@ -47,49 +45,15 @@ MainWindow::~MainWindow()
 void MainWindow::startGame()
 {
     layout->setCurrentIndex(1);
-    //menuBar()->show();
 }
 
 void MainWindow::endGame()
 {
+    //std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     layout->setCurrentIndex(2);
-    //menuBar()->hide();
 }
 
 void MainWindow::restartGame()
 {
     layout->setCurrentIndex(0);
-}
-
-void MainWindow::initMenuBar()
-{
-    QMenu* menuTaquin = menuBar()->addMenu("Taquin");
-
-    QAction* actionNew = new QAction("New Game", this);
-    connect(actionNew, &QAction::triggered, this, &MainWindow::restartGame);
-    QAction* actionQuit = new QAction("Quit", this);
-    connect(actionQuit, &QAction::triggered, qApp, &QApplication::quit);
-    menuTaquin->addAction(actionNew);
-    menuTaquin->addAction(actionQuit);
-
-    QMenu* menuView = menuBar()->addMenu("View");
-    QAction* actionNumberVisibility = new QAction("Show Number", this);
-    QAction* actionImageVisibility = new QAction("Show Image", this);
-    QAction* actionChangeImage = new QAction("Change Image", this);
-    menuView->addAction(actionNumberVisibility);
-    actionNumberVisibility->setCheckable(true);
-    actionImageVisibility->setCheckable(true);
-    menuView->addAction(actionImageVisibility);
-    menuView->addAction(actionChangeImage);
-
-    QMenu* menuAbout = menuBar()->addMenu("About");
-
-    QAction* actionRules = new QAction("Rules", this);
-    QAction* actionTheory = new QAction("Theory", this);
-    menuAbout->addAction(actionRules);
-    menuAbout->addAction(actionTheory);
-
-    actionNumberVisibility->setChecked(true);
-    actionChangeImage->setEnabled(false);
-    connect(actionImageVisibility, &QAction::toggled, actionChangeImage, &QAction::setEnabled);
 }

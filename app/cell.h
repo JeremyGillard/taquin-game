@@ -21,10 +21,8 @@ public slots:
 
 private:
     QTaquin* taquin;
-
     unsigned m_i;
     unsigned m_j;
-
     QPixmap m_imgFragment;
 
     void behavior();

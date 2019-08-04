@@ -31,15 +31,12 @@ public slots:
 
 private:
     QTaquin* taquin = nullptr;
-
     QWidget* centralWidget;
-    QStackedLayout* layout;
-
     IntroductionScene* iScene;
     GameScene* gScene;
     EndScene* eScene;
 
-    void initMenuBar();
+    QStackedLayout* layout;
 };
 
 #endif // MAINWINDOW_H

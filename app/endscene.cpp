@@ -1,9 +1,4 @@
-#include <QLabel>
-#include <QPushButton>
-#include <QVBoxLayout>
-
 #include "endscene.h"
-#include "mainwindow.h"
 
 EndScene::EndScene(QTaquin& qTaquin, QWidget* parent)
     : QWidget(parent)
