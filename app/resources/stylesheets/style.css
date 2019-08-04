@@ -1,0 +1,24 @@
+QWidget#mainWindow {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(62, 81, 81, 255), stop:1 rgba(222, 203, 164, 255));
+}
+
+GameScene {
+    background-color: grey;
+}
+
+QWidget#board {
+    background-color: grey;
+}
+
+QLabel#title {
+    font: 75px normal "Tahoma";
+}
+
+QLabel {
+    font: 16px normal "Tahoma";
+}
+
+QPushButton, QComboBox {
+    background-color: rgba(206, 206, 206, 125);
+    font: 16px normal "Tahoma";
+}

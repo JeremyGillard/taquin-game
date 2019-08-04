@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/img">
+        <file alias="img0">resources/img/asphalt-dark-dawn.jpg</file>
+        <file alias="img1">resources/img/cloud-formation-clouds-cloudy.jpg</file>
+        <file alias="img2">resources/img/clouds-dawn-daylight.jpg</file>
+        <file alias="img3">resources/img/daylight-fog-grass.jpg</file>
+    </qresource>
+    <qresource prefix="/stylesheets">
+        <file alias="style">resources/stylesheets/style.css</file>
+    </qresource>
+</RCC>

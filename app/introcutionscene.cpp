@@ -28,7 +28,9 @@ void IntroductionScene::initComponents()
         initDifficultyCbb->addItem(QString::number(i), i);
 
     title = new QLabel("Taquin");
+    title->setObjectName("title");
     startBtn = new QPushButton("Start");
+    startBtn->setProperty("evilButton", true);
 
     userInformationLayout = new QGridLayout;
     mainLayout = new QVBoxLayout;
@@ -48,6 +50,8 @@ void IntroductionScene::arrangement()
     mainLayout->addWidget(title);
     mainLayout->addLayout(userInformationLayout);
     mainLayout->addWidget(startBtn);
+    mainLayout->setAlignment(Qt::AlignCenter);
+    mainLayout->setSpacing(20);
     setLayout(mainLayout);
 }
 

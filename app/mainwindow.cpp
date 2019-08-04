@@ -8,8 +8,10 @@ MainWindow::MainWindow(QWidget* parent)
 {
     taquin = new QTaquin;
 
+    setWindowTitle("Taquin");
     setFixedSize(450, 550);
     centralWidget = new QWidget();
+    centralWidget->setObjectName("mainWindow");
     layout = new QStackedLayout();
     centralWidget->setLayout(layout);
     setCentralWidget(centralWidget);
@@ -27,6 +29,12 @@ MainWindow::MainWindow(QWidget* parent)
     connect(taquin, &QTaquin::gameFinished, this, &MainWindow::endGame);
     connect(taquin, &QTaquin::gameFinished, eScene, &EndScene::updateScore);
     connect(eScene->restartButton(), &QPushButton::clicked, this, &MainWindow::restartGame);
+
+    QFile styleFile(":/stylesheets/style");
+    styleFile.open(QFile::ReadOnly);
+    QString style(styleFile.readAll());
+    qApp->setStyle(QStyleFactory::keys().at(2));
+    qApp->setStyleSheet(style);
 
     //initMenuBar();
     //menuBar()->hide();

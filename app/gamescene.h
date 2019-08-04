@@ -3,8 +3,12 @@
 
 #include <QGridLayout>
 #include <QLabel>
+#include <QList>
+#include <QPixmap>
 #include <QVBoxLayout>
 #include <QWidget>
+#include <cstdlib>
+#include <ctime>
 
 #include "cell.h"
 #include "qtaquin.h"
@@ -33,6 +37,11 @@ private:
     void arrangement();
     void reInit();
     void behavior();
+
+    QList<QPixmap> imgFragments;
+
+    void createImgFragments();
+    QPixmap loadRandomImg();
 };
 
 #endif // GAMELAYOUT_H

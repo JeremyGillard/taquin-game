@@ -3,10 +3,13 @@
 
 #include <QApplication>
 #include <QDebug>
+#include <QFile>
 #include <QMainWindow>
 #include <QMenu>
 #include <QMenuBar>
 #include <QStackedLayout>
+#include <QString>
+#include <QStyleFactory>
 #include <QWidget>
 
 #include "endscene.h"

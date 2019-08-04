@@ -32,6 +32,8 @@ void EndScene::arrangement()
     layout->addWidget(endLbl);
     layout->addWidget(resultLbl);
     layout->addWidget(restartBtn);
+    layout->setAlignment(Qt::AlignCenter);
+    layout->setSpacing(15);
 }
 
 const QPushButton* EndScene::restartButton() const
