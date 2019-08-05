@@ -53,7 +53,6 @@ void GameScene::updateBoard()
 void GameScene::finalBoard()
 {
     updateBoard();
-    restartBtn->show();
 }
 
 void GameScene::initComponents()
@@ -81,7 +80,7 @@ void GameScene::arrangement()
 
 void GameScene::clearComponents()
 {
-    restartBtn->hide();
+    progressLbl->setText("Number of moves : 0");
     QLayoutItem* child;
     while ((child = board->takeAt(0)) != nullptr) {
         delete child->widget();
