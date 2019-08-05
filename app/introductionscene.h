@@ -34,9 +34,9 @@ private:
     QVBoxLayout* mainLayout;
 
     void initComponents();
-    void initUserInformationLayout();
     void arrangement();
     void behavior();
+    void initUserInformationLayout();
 };
 
 #endif // INTRODUCTIONLAYOUT_H

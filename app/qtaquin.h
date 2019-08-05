@@ -14,8 +14,6 @@ public:
 signals:
     void boardChanged();
     void gameFinished();
-
-public slots:
 };
 
 #endif // QTAQUIN_H

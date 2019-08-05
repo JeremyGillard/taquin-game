@@ -13,8 +13,6 @@ public:
     Cell(const QString& text, const QPixmap& imgFragment, unsigned i, unsigned j, QTaquin& qTaquin, QWidget* parent = nullptr);
     void setBackgroundImg(const QPixmap& pm);
 
-signals:
-
 public slots:
     void paintEvent(QPaintEvent*);
 
