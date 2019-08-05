@@ -24,6 +24,7 @@ private:
     unsigned m_j;
     QPixmap m_imgFragment;
 
+    void arrangement();
     void behavior();
 };
 

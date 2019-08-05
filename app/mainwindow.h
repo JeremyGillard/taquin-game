@@ -34,6 +34,10 @@ private:
     int switchPageIndex;
 
     QStackedLayout* layout;
+
+    void initComponents();
+    void arrangement();
+    void behavior();
 };
 
 #endif // MAINWINDOW_H

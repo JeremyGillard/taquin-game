@@ -43,9 +43,8 @@ private:
 
     void initComponents();
     void arrangement();
-    void clearComponents();
     void behavior();
-    void showNumbers();
+    void clearComponents();
     void createImgFragments();
     void loadRandomImg();
 };

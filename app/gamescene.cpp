@@ -6,7 +6,6 @@ GameScene::GameScene(QTaquin& qTaquin, QWidget* parent)
 {
     initComponents();
     arrangement();
-    restartBtn = new QPushButton("Restart");
     behavior();
     srand(unsigned(time(nullptr)));
     loadRandomImg();
@@ -35,7 +34,7 @@ void GameScene::updateBoard()
         for (unsigned j = 0; j < boardSize; ++j) {
             int cellNumber = static_cast<int>(taquin->getCellAt(i, j));
             Cell* cell = qobject_cast<Cell*>(board->itemAtPosition(static_cast<int>(i), static_cast<int>(j))->widget());
-            cell->setImgFragment(imgFragments.at(cellNumber));
+            cell->setBackgroundImg(imgFragments.at(cellNumber));
             cell->setText(QString::number(cellNumber));
             if (cell->isHidden()) {
                 cell->show();
@@ -54,7 +53,7 @@ void GameScene::updateBoard()
 void GameScene::finalBoard()
 {
     updateBoard();
-    layout->addWidget(restartBtn);
+    restartBtn->show();
 }
 
 void GameScene::initComponents()
@@ -65,6 +64,7 @@ void GameScene::initComponents()
     layout = new QVBoxLayout;
     layout->setAlignment(Qt::AlignCenter);
     progressLbl = new QLabel("Number of moves : 0");
+    restartBtn = new QPushButton("New Game");
     progressLbl->setAlignment(Qt::AlignCenter);
 }
 
@@ -75,18 +75,17 @@ void GameScene::arrangement()
     boardW->setObjectName("board");
     layout->addWidget(boardW);
     layout->addWidget(progressLbl);
+    layout->addWidget(restartBtn);
     layout->setSpacing(15);
 }
 
 void GameScene::clearComponents()
 {
-    if (boardW != nullptr) {
-        delete board;
-        delete boardW;
-        delete layout;
-        delete progressLbl;
-        initComponents();
-        arrangement();
+    restartBtn->hide();
+    QLayoutItem* child;
+    while ((child = board->takeAt(0)) != nullptr) {
+        delete child->widget();
+        delete child;
     }
 }
 
@@ -94,10 +93,6 @@ void GameScene::behavior()
 {
     connect(taquin, &QTaquin::boardChanged, this, &GameScene::updateBoard);
     connect(restartBtn, &QPushButton::clicked, this, &GameScene::restartGame);
-}
-
-void GameScene::showNumbers()
-{
 }
 
 void GameScene::createImgFragments()
