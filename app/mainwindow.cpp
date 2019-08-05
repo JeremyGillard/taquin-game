@@ -1,10 +1,8 @@
 #include "mainwindow.h"
-#include "endscene.h"
-#include "gamescene.h"
-#include "introductionscene.h"
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
+    , switchPageIndex(1)
 {
     taquin = new QTaquin;
 
@@ -18,18 +16,14 @@ MainWindow::MainWindow(QWidget* parent)
 
     iScene = new IntroductionScene(*taquin);
     gScene = new GameScene(*taquin);
-    eScene = new EndScene(*taquin);
 
     layout->addWidget(iScene);
     layout->addWidget(gScene);
-    layout->addWidget(eScene);
 
-    connect(iScene, &IntroductionScene::gameIsInitialized, this, &MainWindow::startGame);
+    connect(iScene, &IntroductionScene::gameIsInitialized, this, &MainWindow::switchPage);
     connect(iScene, &IntroductionScene::gameIsInitialized, gScene, &GameScene::initBoard);
     connect(taquin, &QTaquin::gameFinished, gScene, &GameScene::finalBoard);
-    connect(taquin, &QTaquin::gameFinished, eScene, &EndScene::updateScore);
-    connect(gScene, &GameScene::finalBoardDisplayed, this, &MainWindow::endGame);
-    connect(eScene->restartButton(), &QPushButton::clicked, this, &MainWindow::restartGame);
+    connect(gScene, &GameScene::restartGame, this, &MainWindow::switchPage);
 
     QFile styleFile(":/stylesheets/style");
     styleFile.open(QFile::ReadOnly);
@@ -42,18 +36,12 @@ MainWindow::~MainWindow()
 {
 }
 
-void MainWindow::startGame()
+void MainWindow::switchPage()
 {
-    layout->setCurrentIndex(1);
-}
-
-void MainWindow::endGame()
-{
-    //std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-    layout->setCurrentIndex(2);
-}
-
-void MainWindow::restartGame()
-{
-    layout->setCurrentIndex(0);
+    layout->setCurrentIndex(switchPageIndex);
+    if (switchPageIndex) {
+        switchPageIndex = 0;
+    } else {
+        ++switchPageIndex;
+    }
 }

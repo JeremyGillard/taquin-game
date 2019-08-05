@@ -11,8 +11,7 @@ class Cell : public QPushButton {
 
 public:
     Cell(const QString& text, const QPixmap& imgFragment, unsigned i, unsigned j, QTaquin& qTaquin, QWidget* parent = nullptr);
-    bool operator==(const Cell& cell) const;
-    void setImgFragment(const QPixmap& pm);
+    void setBackgroundImg(const QPixmap& pm);
 
 signals:
 

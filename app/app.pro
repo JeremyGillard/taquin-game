@@ -26,7 +26,6 @@ CONFIG += c++14
 
 SOURCES += \
         cell.cpp \
-        endscene.cpp \
         gamescene.cpp \
         introcutionscene.cpp \
         main.cpp \
@@ -35,7 +34,6 @@ SOURCES += \
 
 HEADERS += \
         cell.h \
-        endscene.h \
         gamescene.h \
         introductionscene.h \
         mainwindow.h \

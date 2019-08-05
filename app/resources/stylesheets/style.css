@@ -3,11 +3,11 @@ QWidget#mainWindow {
 }
 
 QWidget#board {
-    background-color: rgb(170, 170, 170);
-    border-width: 3px;
+    background-color: rgb(220, 220, 220);
+    border-width: 1px;
     border-style: solid;
-    border-color: rgb(170, 170, 170);
-    border-radius: 5px;
+    border-color: rgb(140, 140, 140);
+    border-radius: 3px;
 }
 
 QLabel#title {

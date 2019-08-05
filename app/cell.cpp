@@ -14,12 +14,7 @@ Cell::Cell(const QString& text, const QPixmap& imgFragment, unsigned i, unsigned
     behavior();
 }
 
-bool Cell::operator==(const Cell& cell) const
-{
-    return (m_i == cell.m_i) && (m_j == cell.m_j);
-}
-
-void Cell::setImgFragment(const QPixmap& pm)
+void Cell::setImgBackground(const QPixmap& pm)
 {
     m_imgFragment = pm;
 }

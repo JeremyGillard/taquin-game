@@ -12,7 +12,6 @@
 #include <QStyleFactory>
 #include <QWidget>
 
-#include "endscene.h"
 #include "gamescene.h"
 #include "introductionscene.h"
 #include "qtaquin.h"
@@ -25,16 +24,14 @@ public:
     ~MainWindow();
 
 public slots:
-    void startGame();
-    void endGame();
-    void restartGame();
+    void switchPage();
 
 private:
-    QTaquin* taquin = nullptr;
+    QTaquin* taquin;
     QWidget* centralWidget;
     IntroductionScene* iScene;
     GameScene* gScene;
-    EndScene* eScene;
+    int switchPageIndex;
 
     QStackedLayout* layout;
 };

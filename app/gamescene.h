@@ -23,6 +23,7 @@ public:
 
 signals:
     void finalBoardDisplayed();
+    void restartGame();
 
 public slots:
     void initBoard();
@@ -33,6 +34,7 @@ private:
     QTaquin* taquin;
     QLabel* progressLbl;
     QWidget* boardW;
+    QPushButton* restartBtn;
     QList<QPixmap> imgFragments;
     QPixmap currentImg;
 
@@ -43,6 +45,7 @@ private:
     void arrangement();
     void clearComponents();
     void behavior();
+    void showNumbers();
     void createImgFragments();
     void loadRandomImg();
 };

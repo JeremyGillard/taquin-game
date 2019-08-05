@@ -6,6 +6,7 @@ GameScene::GameScene(QTaquin& qTaquin, QWidget* parent)
 {
     initComponents();
     arrangement();
+    restartBtn = new QPushButton("Restart");
     behavior();
     srand(unsigned(time(nullptr)));
     loadRandomImg();
@@ -18,7 +19,7 @@ void GameScene::initBoard()
     unsigned boardSize = taquin->chosenSize();
     for (unsigned i = 0; i < boardSize; ++i) {
         for (unsigned j = 0; j < boardSize; ++j) {
-            unsigned cellNumber = taquin->getCellAt(i, j);
+            int cellNumber = static_cast<int>(taquin->getCellAt(i, j));
             board->addWidget(new Cell(QString::number(cellNumber), imgFragments.at(cellNumber), i, j, *taquin, boardW), static_cast<int>(i), static_cast<int>(j));
             if (taquin->getCellAt(i, j) == 0) {
                 board->itemAtPosition(static_cast<int>(i), static_cast<int>(j))->widget()->hide();
@@ -32,14 +33,18 @@ void GameScene::updateBoard()
     unsigned boardSize = taquin->chosenSize();
     for (unsigned i = 0; i < boardSize; ++i) {
         for (unsigned j = 0; j < boardSize; ++j) {
-            unsigned cellNumber = taquin->getCellAt(i, j);
+            int cellNumber = static_cast<int>(taquin->getCellAt(i, j));
             Cell* cell = qobject_cast<Cell*>(board->itemAtPosition(static_cast<int>(i), static_cast<int>(j))->widget());
             cell->setImgFragment(imgFragments.at(cellNumber));
             cell->setText(QString::number(cellNumber));
-            if (cell->isHidden())
+            if (cell->isHidden()) {
                 cell->show();
+            }
             if (!taquin->isOver() && taquin->getCellAt(i, j) == 0) {
                 board->itemAtPosition(static_cast<int>(i), static_cast<int>(j))->widget()->hide();
+            }
+            if (taquin->isOver()) {
+                cell->setText("");
             }
         }
     }
@@ -48,11 +53,8 @@ void GameScene::updateBoard()
 
 void GameScene::finalBoard()
 {
-    QLabel fullImage;
-    int boardSize = static_cast<int>(taquin->chosenSize());
-    fullImage.setPixmap((currentImg));
-    board->addWidget(&fullImage, 0, 0, boardSize, boardSize);
-    emit finalBoardDisplayed();
+    updateBoard();
+    layout->addWidget(restartBtn);
 }
 
 void GameScene::initComponents()
@@ -91,6 +93,11 @@ void GameScene::clearComponents()
 void GameScene::behavior()
 {
     connect(taquin, &QTaquin::boardChanged, this, &GameScene::updateBoard);
+    connect(restartBtn, &QPushButton::clicked, this, &GameScene::restartGame);
+}
+
+void GameScene::showNumbers()
+{
 }
 
 void GameScene::createImgFragments()
