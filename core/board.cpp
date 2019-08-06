@@ -1,7 +1,3 @@
-#include <algorithm>
-#include <cstdlib>
-#include <ctime>
-
 #include "board.h"
 
 Board::Board(unsigned size)

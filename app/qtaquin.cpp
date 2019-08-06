@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "qtaquin.h"
 
 QTaquin::QTaquin(QObject* parent)

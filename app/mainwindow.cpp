@@ -29,10 +29,10 @@ void MainWindow::initComponents()
     setFixedSize(450, 550);
     centralWidget = new QWidget(this);
     centralWidget->setObjectName("mainWindow");
-    taquin = new QTaquin;
+    taquin = new QTaquin(this);
     layout = new QStackedLayout;
-    iScene = new IntroductionScene(*taquin);
-    gScene = new GameScene(*taquin);
+    iScene = new IntroductionScene(*taquin, this);
+    gScene = new GameScene(*taquin, this);
     QFile styleFile(":/stylesheets/style");
     styleFile.open(QFile::ReadOnly);
     QString style(styleFile.readAll());

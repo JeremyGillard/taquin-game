@@ -19,7 +19,8 @@ void GameScene::initBoard()
     for (unsigned i = 0; i < boardSize; ++i) {
         for (unsigned j = 0; j < boardSize; ++j) {
             int cellNumber = static_cast<int>(taquin->getCellAt(i, j));
-            board->addWidget(new Cell(QString::number(cellNumber), imgFragments.at(cellNumber), i, j, *taquin, boardW), static_cast<int>(i), static_cast<int>(j));
+            board->addWidget(new Cell(QString::number(cellNumber), imgFragments.at(cellNumber), i, j, *taquin, boardW),
+                static_cast<int>(i), static_cast<int>(j));
             if (taquin->getCellAt(i, j) == 0) {
                 board->itemAtPosition(static_cast<int>(i), static_cast<int>(j))->widget()->hide();
             }
@@ -58,7 +59,9 @@ void GameScene::finalBoard()
 void GameScene::newGame()
 {
     if (!taquin->isOver()) {
-        int response = QMessageBox::question(this, "New game confirm?", "Are you sure you want to start a new game without having finished the current one?", QMessageBox ::Yes | QMessageBox::No);
+        int response = QMessageBox::question(this, "New game confirm?",
+            "Are you sure you want to start a new game without having finished the current one?",
+            QMessageBox ::Yes | QMessageBox::No);
         if (response == QMessageBox::Yes) {
             emit newGameConfirmation();
         }

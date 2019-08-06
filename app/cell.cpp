@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "cell.h"
 
 const int IMAGE_SIZE = 400;
