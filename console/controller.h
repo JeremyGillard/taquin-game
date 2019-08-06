@@ -1,8 +1,6 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
-#include <memory>
-
 #include "taquin.h"
 #include "view.h"
 

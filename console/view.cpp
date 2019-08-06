@@ -1,8 +1,4 @@
 #include "view.h"
-#include "Dependencies/keyboard.hpp"
-#include "Dependencies/stringConvert.hpp"
-#include <iomanip>
-#include <iostream>
 
 View::View(Taquin& taquin)
     : m_taquin(&taquin)

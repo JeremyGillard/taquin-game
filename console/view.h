@@ -1,8 +1,12 @@
 #ifndef VIEW_H
 #define VIEW_H
 
+#include <iomanip>
+#include <iostream>
 #include <memory>
 
+#include "Dependencies/keyboard.hpp"
+#include "Dependencies/stringConvert.hpp"
 #include "taquin.h"
 
 /**
