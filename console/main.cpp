@@ -1,6 +1,3 @@
-#include <iostream>
-#include <vector>
-
 #include "controller.h"
 #include "taquin.h"
 #include "view.h"
