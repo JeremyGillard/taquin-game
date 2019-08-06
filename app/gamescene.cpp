@@ -55,6 +55,18 @@ void GameScene::finalBoard()
     updateBoard();
 }
 
+void GameScene::newGame()
+{
+    if (!taquin->isOver()) {
+        int response = QMessageBox::question(this, "New game confirm?", "Are you sure you want to start a new game without having finished the current one?", QMessageBox ::Yes | QMessageBox::No);
+        if (response == QMessageBox::Yes) {
+            emit newGameConfirmation();
+        }
+    } else {
+        emit newGameConfirmation();
+    }
+}
+
 void GameScene::initComponents()
 {
     board = new QGridLayout;
@@ -63,7 +75,7 @@ void GameScene::initComponents()
     layout = new QVBoxLayout;
     layout->setAlignment(Qt::AlignCenter);
     progressLbl = new QLabel("Number of moves : 0");
-    restartBtn = new QPushButton("New Game");
+    newGameBtn = new QPushButton("New Game");
     progressLbl->setAlignment(Qt::AlignCenter);
 }
 
@@ -74,7 +86,7 @@ void GameScene::arrangement()
     boardW->setObjectName("board");
     layout->addWidget(boardW);
     layout->addWidget(progressLbl);
-    layout->addWidget(restartBtn);
+    layout->addWidget(newGameBtn);
     layout->setSpacing(15);
 }
 
@@ -91,7 +103,7 @@ void GameScene::clearComponents()
 void GameScene::behavior()
 {
     connect(taquin, &QTaquin::boardChanged, this, &GameScene::updateBoard);
-    connect(restartBtn, &QPushButton::clicked, this, &GameScene::restartGame);
+    connect(newGameBtn, &QPushButton::clicked, this, &GameScene::newGame);
 }
 
 void GameScene::createImgFragments()

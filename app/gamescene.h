@@ -5,6 +5,7 @@
 #include <QGridLayout>
 #include <QLabel>
 #include <QList>
+#include <QMessageBox>
 #include <QPixmap>
 #include <QVBoxLayout>
 #include <QWidget>
@@ -23,18 +24,19 @@ public:
 
 signals:
     void finalBoardDisplayed();
-    void restartGame();
+    void newGameConfirmation();
 
 public slots:
     void initBoard();
     void updateBoard();
     void finalBoard();
+    void newGame();
 
 private:
     QTaquin* taquin;
     QLabel* progressLbl;
     QWidget* boardW;
-    QPushButton* restartBtn;
+    QPushButton* newGameBtn;
     QList<QPixmap> imgFragments;
     QPixmap currentImg;
 

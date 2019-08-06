@@ -53,5 +53,5 @@ void MainWindow::behavior()
     connect(iScene, &IntroductionScene::gameIsInitialized, this, &MainWindow::switchPage);
     connect(iScene, &IntroductionScene::gameIsInitialized, gScene, &GameScene::initBoard);
     connect(taquin, &QTaquin::gameFinished, gScene, &GameScene::finalBoard);
-    connect(gScene, &GameScene::restartGame, this, &MainWindow::switchPage);
+    connect(gScene, &GameScene::newGameConfirmation, this, &MainWindow::switchPage);
 }
