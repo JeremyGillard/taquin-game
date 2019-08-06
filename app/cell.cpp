@@ -26,7 +26,7 @@ void Cell::paintEvent(QPaintEvent*)
 {
     QPainter painter(this);
     painter.drawPixmap(0, 0, m_imgFragment);
-    painter.setPen(Qt::gray);
+    painter.setPen(Qt::white);
     painter.setFont(QFont(FONT_FAMILLY, FONT_SIZE));
     painter.drawText(rect(), Qt::AlignCenter, this->text());
 }
@@ -39,5 +39,9 @@ void Cell::arrangement()
 
 void Cell::behavior()
 {
-    connect(this, &Cell::clicked, this, [&]() { taquin->moveCellBoard(m_i, m_j); });
+    connect(this, &Cell::clicked, this, [&]() {
+        if (!taquin->isOver()) {
+            taquin->moveCellBoard(m_i, m_j);
+        }
+    });
 }
