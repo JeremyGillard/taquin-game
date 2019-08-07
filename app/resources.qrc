@@ -3,7 +3,12 @@
         <file alias="img0">resources/img/asphalt-dark-dawn.jpg</file>
         <file alias="img1">resources/img/cloud-formation-clouds-cloudy.jpg</file>
         <file alias="img2">resources/img/clouds-dawn-daylight.jpg</file>
-        <file alias="img3">resources/img/daylight-fog-grass.jpg</file>
+        <file alias="img3">resources/img/adventure-asphalt-daylight.jpg</file>
+        <file alias="img4">resources/img/alberta-attraction-banff.jpg</file>
+        <file alias="img5">resources/img/blur-breathtaking-clouds.jpg</file>
+        <file alias="img6">resources/img/bridge-cascade-environment.jpg</file>
+        <file alias="img7">resources/img/clouds-dawn-deganwy.jpg</file>
+        <file alias="img8">resources/img/crop-cropland-farm.jpg</file>
     </qresource>
     <qresource prefix="/stylesheets">
         <file alias="style">resources/stylesheets/style.css</file>

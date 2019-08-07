@@ -3,17 +3,19 @@
 GameScene::GameScene(QTaquin& qTaquin, QWidget* parent)
     : QWidget(parent)
     , taquin(&qTaquin)
+    , numberVisible(true)
 {
     initComponents();
     arrangement();
     behavior();
     srand(unsigned(time(nullptr)));
-    loadRandomImg();
+    loadImages();
 }
 
 void GameScene::initBoard()
 {
     clearComponents();
+    pickRandomImage();
     createImgFragments();
     unsigned boardSize = taquin->chosenSize();
     for (unsigned i = 0; i < boardSize; ++i) {
@@ -36,6 +38,7 @@ void GameScene::updateBoard()
             int cellNumber = static_cast<int>(taquin->getCellAt(i, j));
             Cell* cell = qobject_cast<Cell*>(boardLayout->itemAtPosition(static_cast<int>(i), static_cast<int>(j))->widget());
             cell->setBackgroundImg(imgFragments.at(cellNumber));
+            cell->repaint();
             cell->setText(QString::number(cellNumber));
             if (cell->isHidden()) {
                 cell->show();
@@ -43,7 +46,7 @@ void GameScene::updateBoard()
             if (!taquin->isOver() && taquin->getCellAt(i, j) == 0) {
                 boardLayout->itemAtPosition(static_cast<int>(i), static_cast<int>(j))->widget()->hide();
             }
-            if (taquin->isOver()) {
+            if (taquin->isOver() || !numberVisible) {
                 cell->setText("");
             }
         }
@@ -70,6 +73,23 @@ void GameScene::newGame()
     }
 }
 
+void GameScene::newImage()
+{
+    pickRandomImage();
+    createImgFragments();
+    updateBoard();
+}
+
+void GameScene::showNumbers()
+{
+    if (numberVisible) {
+        numberVisible = false;
+    } else {
+        numberVisible = true;
+    }
+    updateBoard();
+}
+
 void GameScene::initComponents()
 {
     boardLayout = new QGridLayout;
@@ -93,6 +113,12 @@ void GameScene::arrangement()
     mainLayout->setSpacing(15);
 }
 
+void GameScene::behavior()
+{
+    connect(taquin, &QTaquin::boardChanged, this, &GameScene::updateBoard);
+    connect(newGameBtn, &QPushButton::clicked, this, &GameScene::newGame);
+}
+
 void GameScene::clearComponents()
 {
     progressLbl->setText("Number of moves : 0");
@@ -103,33 +129,33 @@ void GameScene::clearComponents()
     }
 }
 
-void GameScene::behavior()
-{
-    connect(taquin, &QTaquin::boardChanged, this, &GameScene::updateBoard);
-    connect(newGameBtn, &QPushButton::clicked, this, &GameScene::newGame);
-}
-
 void GameScene::createImgFragments()
 {
     if (imgFragments.size() != 0) {
         imgFragments.clear();
     }
-    loadRandomImg();
     int boardSize = static_cast<int>(taquin->chosenSize());
-    int fragmentSize = currentImg.height() / boardSize;
+    int fragmentSize = currentImg->height() / boardSize;
 
     for (int i = 0; i < boardSize; ++i) {
         for (int j = 0; j < boardSize; ++j) {
             int size1 = i * fragmentSize;
             int size2 = j * fragmentSize;
-            imgFragments.push_back(currentImg.copy(size2, size1, fragmentSize, fragmentSize));
+            imgFragments.push_back(currentImg->copy(size2, size1, fragmentSize, fragmentSize));
         }
     }
     imgFragments.push_front(imgFragments.takeLast());
 }
 
-void GameScene::loadRandomImg()
+void GameScene::loadImages()
 {
-    unsigned chosenImg = rand() % 4;
-    currentImg = QPixmap(":/img/img" + QString::number(chosenImg));
+    for (int i = 0; i < 9; ++i) {
+        imgGalery.push_back(QPixmap(":/img/img" + QString::number(i)));
+    }
+}
+
+void GameScene::pickRandomImage()
+{
+    unsigned chosenImg = rand() % 9;
+    currentImg = imgGalery.begin() + chosenImg;
 }

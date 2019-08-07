@@ -63,6 +63,26 @@ private:
     int switchPageIndex;
 
     /**
+     * @brief actionNewGame allows to start a new game.
+     */
+    QAction* actionNewGame;
+
+    /**
+     * @brief actionQuit allows to quit the game.
+     */
+    QAction* actionQuit;
+
+    /**
+     * @brief actionNewImage allows to load a new image in the background of the cells.
+     */
+    QAction* actionNewImage;
+
+    /**
+     * @brief actionShowNumbers allows to show or hide the number on the cells.
+     */
+    QAction* actionShowNumbers;
+
+    /**
      * @brief layout the layout that contains the two pages of the game.
      */
     QStackedLayout* layout;
@@ -81,6 +101,11 @@ private:
      * @brief behavior determines the behavior of the elements contained in the window.
      */
     void behavior();
+
+    /**
+     * @brief initMenuBar allows to initialize the menu bar.
+     */
+    void initMenuBar();
 };
 
 #endif // MAINWINDOW_H

@@ -58,6 +58,16 @@ public slots:
      */
     void newGame();
 
+    /**
+     * @brief newImage allows to change the background image during the game.
+     */
+    void newImage();
+
+    /**
+     * @brief showNumbers allows to show or hide the number on cells.
+     */
+    void showNumbers();
+
 private:
     /**
      * @brief taquin the model of the Taquin represented.
@@ -80,14 +90,19 @@ private:
     QPushButton* newGameBtn;
 
     /**
-     * @brief imgFragments is the current image fragments list.
+     * @brief imgGalery is the image available to display in the game.
      */
-    QList<QPixmap> imgFragments;
+    QList<QPixmap> imgGalery;
 
     /**
      * @brief currentImg is the current image randomly load during the game initialization.
      */
-    QPixmap currentImg;
+    QList<QPixmap>::iterator currentImg;
+
+    /**
+     * @brief imgFragments is the current image fragments list.
+     */
+    QList<QPixmap> imgFragments;
 
     /**
      * @brief boardLayout allows to display correctly the different cells that represent the board of the game.
@@ -98,6 +113,11 @@ private:
      * @brief mainLayout is the main layout of the game scene.
      */
     QVBoxLayout* mainLayout;
+
+    /**
+     * @brief numberVisible is true if the number have to be displayed on the cells.
+     */
+    bool numberVisible;
 
     /**
      * @brief initComponents initializes the components of the window.
@@ -125,9 +145,14 @@ private:
     void createImgFragments();
 
     /**
-     * @brief loadRandomImg allows to load a random image stored in resources program.
+     * @brief loadImages allows to load images stored in resources program.
      */
-    void loadRandomImg();
+    void loadImages();
+
+    /**
+     * @brief pickRandomImage allows to pick a random image from the image gallery.
+     */
+    void pickRandomImage();
 };
 
 #endif // GAMELAYOUT_H
