@@ -4,6 +4,7 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
+        boardtests.cpp \
         main.cpp \
         taquintests.cpp
 

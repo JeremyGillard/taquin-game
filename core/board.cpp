@@ -81,16 +81,21 @@ bool Board::moveCell(unsigned i, unsigned j)
 void Board::shuffle(unsigned mixNumber)
 {
     std::vector<std::pair<unsigned, unsigned>> availableMovements;
-    std::pair<unsigned, unsigned> previousMovement = getAvailableMovements().at(0);
+    std::vector<std::pair<unsigned, unsigned>> previousMovements;
+    previousMovements.reserve(3);
+    previousMovements.push_back(getAvailableMovements().at(0));
     for (unsigned i = 0; i < mixNumber; ++i) {
         unsigned randomNumber = unsigned(rand()) % getAvailableMovements().size();
         std::pair<unsigned, unsigned> randomMovement = getAvailableMovements().at(randomNumber);
-        while (randomMovement == previousMovement) {
+        while (std::find(previousMovements.begin(), previousMovements.end(), randomMovement) != previousMovements.end()) {
             randomNumber = unsigned(rand()) % getAvailableMovements().size();
             randomMovement = getAvailableMovements().at(randomNumber);
         }
         moveCell(randomMovement.first, randomMovement.second);
-        previousMovement = randomMovement;
+        previousMovements.push_back(randomMovement);
+        if (previousMovements.size() == 3) {
+            previousMovements.clear();
+        }
     }
 }
 

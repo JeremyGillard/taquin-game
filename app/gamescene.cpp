@@ -19,10 +19,10 @@ void GameScene::initBoard()
     for (unsigned i = 0; i < boardSize; ++i) {
         for (unsigned j = 0; j < boardSize; ++j) {
             int cellNumber = static_cast<int>(taquin->getCellAt(i, j));
-            board->addWidget(new Cell(QString::number(cellNumber), imgFragments.at(cellNumber), i, j, *taquin, boardW),
+            boardLayout->addWidget(new Cell(QString::number(cellNumber), imgFragments.at(cellNumber), i, j, *taquin, boardWidget),
                 static_cast<int>(i), static_cast<int>(j));
             if (taquin->getCellAt(i, j) == 0) {
-                board->itemAtPosition(static_cast<int>(i), static_cast<int>(j))->widget()->hide();
+                boardLayout->itemAtPosition(static_cast<int>(i), static_cast<int>(j))->widget()->hide();
             }
         }
     }
@@ -34,14 +34,14 @@ void GameScene::updateBoard()
     for (unsigned i = 0; i < boardSize; ++i) {
         for (unsigned j = 0; j < boardSize; ++j) {
             int cellNumber = static_cast<int>(taquin->getCellAt(i, j));
-            Cell* cell = qobject_cast<Cell*>(board->itemAtPosition(static_cast<int>(i), static_cast<int>(j))->widget());
+            Cell* cell = qobject_cast<Cell*>(boardLayout->itemAtPosition(static_cast<int>(i), static_cast<int>(j))->widget());
             cell->setBackgroundImg(imgFragments.at(cellNumber));
             cell->setText(QString::number(cellNumber));
             if (cell->isHidden()) {
                 cell->show();
             }
             if (!taquin->isOver() && taquin->getCellAt(i, j) == 0) {
-                board->itemAtPosition(static_cast<int>(i), static_cast<int>(j))->widget()->hide();
+                boardLayout->itemAtPosition(static_cast<int>(i), static_cast<int>(j))->widget()->hide();
             }
             if (taquin->isOver()) {
                 cell->setText("");
@@ -72,11 +72,11 @@ void GameScene::newGame()
 
 void GameScene::initComponents()
 {
-    board = new QGridLayout;
-    board->setSpacing(0);
-    boardW = new QWidget;
-    layout = new QVBoxLayout;
-    layout->setAlignment(Qt::AlignCenter);
+    boardLayout = new QGridLayout;
+    boardLayout->setSpacing(0);
+    boardWidget = new QWidget;
+    mainLayout = new QVBoxLayout;
+    mainLayout->setAlignment(Qt::AlignCenter);
     progressLbl = new QLabel("Number of moves : 0");
     newGameBtn = new QPushButton("New Game");
     progressLbl->setAlignment(Qt::AlignCenter);
@@ -84,20 +84,20 @@ void GameScene::initComponents()
 
 void GameScene::arrangement()
 {
-    setLayout(layout);
-    boardW->setLayout(board);
-    boardW->setObjectName("board");
-    layout->addWidget(boardW);
-    layout->addWidget(progressLbl);
-    layout->addWidget(newGameBtn);
-    layout->setSpacing(15);
+    setLayout(mainLayout);
+    boardWidget->setLayout(boardLayout);
+    boardWidget->setObjectName("board");
+    mainLayout->addWidget(boardWidget);
+    mainLayout->addWidget(progressLbl);
+    mainLayout->addWidget(newGameBtn);
+    mainLayout->setSpacing(15);
 }
 
 void GameScene::clearComponents()
 {
     progressLbl->setText("Number of moves : 0");
     QLayoutItem* child;
-    while ((child = board->takeAt(0)) != nullptr) {
+    while ((child = boardLayout->takeAt(0)) != nullptr) {
         delete child->widget();
         delete child;
     }

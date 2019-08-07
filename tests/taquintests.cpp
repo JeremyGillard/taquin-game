@@ -67,7 +67,7 @@ TEST_CASE("Get Cell At method Tests")
     {
         Taquin taquin;
         taquin.initBoard(4);
-        taquin.start(10);
+        taquin.start(31);
         REQUIRE(taquin.getCellAt(3, 3) != 0);
     }
 }
