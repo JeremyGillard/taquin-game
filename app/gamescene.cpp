@@ -14,8 +14,9 @@ GameScene::GameScene(QTaquin& qTaquin, QWidget* parent)
 
 void GameScene::initBoard()
 {
+    newGameBtn->hide();
     clearComponents();
-    pickRandomImage();
+    pickImage();
     createImgFragments();
     unsigned boardSize = taquin->chosenSize();
     for (unsigned i = 0; i < boardSize; ++i) {
@@ -57,6 +58,7 @@ void GameScene::updateBoard()
 void GameScene::finalBoard()
 {
     updateBoard();
+    newGameBtn->show();
 }
 
 void GameScene::newGame()
@@ -75,7 +77,7 @@ void GameScene::newGame()
 
 void GameScene::newImage()
 {
-    pickRandomImage();
+    pickImage();
     createImgFragments();
     updateBoard();
 }
@@ -152,10 +154,13 @@ void GameScene::loadImages()
     for (int i = 0; i < 9; ++i) {
         imgGalery.push_back(QPixmap(":/img/img" + QString::number(i)));
     }
+    currentImg = imgGalery.begin();
 }
 
-void GameScene::pickRandomImage()
+void GameScene::pickImage()
 {
-    unsigned chosenImg = rand() % 9;
-    currentImg = imgGalery.begin() + chosenImg;
+    ++currentImg;
+    if (currentImg == imgGalery.end()) {
+        currentImg = imgGalery.begin();
+    }
 }

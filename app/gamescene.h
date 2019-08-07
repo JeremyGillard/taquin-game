@@ -152,7 +152,7 @@ private:
     /**
      * @brief pickRandomImage allows to pick a random image from the image gallery.
      */
-    void pickRandomImage();
+    void pickImage();
 };
 
 #endif // GAMELAYOUT_H
