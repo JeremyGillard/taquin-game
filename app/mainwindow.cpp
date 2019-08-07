@@ -29,6 +29,7 @@ void MainWindow::switchPage()
 void MainWindow::initComponents()
 {
     setWindowTitle("Taquin");
+    setWindowIcon(QIcon(":/img/logo"));
     setFixedSize(500, 600);
     centralWidget = new QWidget(this);
     centralWidget->setObjectName("mainWindow");

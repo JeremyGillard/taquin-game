@@ -36,14 +36,6 @@ void IntroductionScene::initComponents()
     mainLayout = new QVBoxLayout;
 }
 
-void IntroductionScene::initUserInformationLayout()
-{
-    userInformationLayout->addWidget(initSizeBoardLbl, 0, 0);
-    userInformationLayout->addWidget(initSizeBoardCbb, 0, 1);
-    userInformationLayout->addWidget(initDifficultyLbl, 1, 0);
-    userInformationLayout->addWidget(initDifficultyCbb, 1, 1);
-}
-
 void IntroductionScene::arrangement()
 {
     initUserInformationLayout();
@@ -58,4 +50,12 @@ void IntroductionScene::arrangement()
 void IntroductionScene::behavior()
 {
     connect(startBtn, &QPushButton::clicked, this, &IntroductionScene::initGame);
+}
+
+void IntroductionScene::initUserInformationLayout()
+{
+    userInformationLayout->addWidget(initSizeBoardLbl, 0, 0);
+    userInformationLayout->addWidget(initSizeBoardCbb, 0, 1);
+    userInformationLayout->addWidget(initDifficultyLbl, 1, 0);
+    userInformationLayout->addWidget(initDifficultyCbb, 1, 1);
 }

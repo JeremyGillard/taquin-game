@@ -9,8 +9,10 @@
         <file alias="img6">resources/img/bridge-cascade-environment.jpg</file>
         <file alias="img7">resources/img/clouds-dawn-deganwy.jpg</file>
         <file alias="img8">resources/img/crop-cropland-farm.jpg</file>
+        <file alias="logo">resources/img/logo.jpg</file>
     </qresource>
     <qresource prefix="/stylesheets">
         <file alias="style">resources/stylesheets/style.css</file>
+        <file>resources/img/logo.jpg</file>
     </qresource>
 </RCC>
