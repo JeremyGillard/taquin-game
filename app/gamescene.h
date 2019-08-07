@@ -66,7 +66,7 @@ public slots:
     /**
      * @brief showNumbers allows to show or hide the number on cells.
      */
-    void showNumbers();
+    void showNumbers(bool visible);
 
 private:
     /**

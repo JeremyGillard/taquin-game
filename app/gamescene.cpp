@@ -82,13 +82,9 @@ void GameScene::newImage()
     updateBoard();
 }
 
-void GameScene::showNumbers()
+void GameScene::showNumbers(bool visible)
 {
-    if (numberVisible) {
-        numberVisible = false;
-    } else {
-        numberVisible = true;
-    }
+    numberVisible = visible;
     updateBoard();
 }
 

@@ -18,6 +18,7 @@ void MainWindow::switchPage()
     layout->setCurrentIndex(switchPageIndex);
     if (switchPageIndex) {
         menuBar()->show();
+        actionShowNumbers->setChecked(true);
         switchPageIndex = 0;
     } else {
         menuBar()->hide();
@@ -60,7 +61,7 @@ void MainWindow::behavior()
     connect(actionNewGame, &QAction::triggered, gScene, &GameScene::newGame);
     connect(actionQuit, &QAction::triggered, qApp, &QApplication::quit);
     connect(actionNewImage, &QAction::triggered, gScene, &GameScene::newImage);
-    connect(actionShowNumbers, &QAction::triggered, gScene, &GameScene::showNumbers);
+    connect(actionShowNumbers, &QAction::toggled, gScene, &GameScene::showNumbers);
 }
 
 void MainWindow::initMenuBar()
