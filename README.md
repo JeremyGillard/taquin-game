@@ -12,12 +12,12 @@ Le principe a été étendu à toutes sortes d'autres jeux. La plupart sont à b
 
 **Language**
 
-C++14
+- C++ version:14
 
 **Framework**
 
-Qt5.15.0  
-Catch2
+- Qt version:5.15.0  
+- Catch version:2
 
 ## Setup
 
