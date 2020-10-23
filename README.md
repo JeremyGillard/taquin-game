@@ -8,6 +8,18 @@ Le taquin est un jeu solitaire en forme de damier créé vers 18701 aux États-U
 
 Le principe a été étendu à toutes sortes d'autres jeux. La plupart sont à base de blocs rectangulaires plutôt que carrés, mais le but est toujours de disposer les blocs d'une façon déterminée par un nombre minimal de mouvements. Le Rubik's Cube est aujourd'hui considéré comme l'un des « descendants » du taquin. [Wikipedia](https://fr.wikipedia.org/wiki/Taquin)
 
+## Technologies
+
+**Language**
+
+C++14
+
+**Framework**
+
+Qt5.15.0
+
+## Setup
+
 ## Licensing
 
 With confirmation from my laboratory supervisor I would like to post this project on my personal github with the license below (to be confirmed).
