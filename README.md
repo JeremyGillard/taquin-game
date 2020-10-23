@@ -16,7 +16,7 @@ C++14
 
 **Framework**
 
-Qt5.15.0
+Qt5.15.0  
 Catch2
 
 ## Setup
