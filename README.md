@@ -25,7 +25,7 @@ Catch2
 2. Clone the repo
 3. Open the file Taquin.pro with Qt Creator
 4. [Important] In Qt Creator, Right click on "core" folder -> Compile "Core"
-5. In Qt Creator, Right click on "app" or "console" folder -> Execute
+5. In Qt Creator, Right click on "app" or "console" or "tests" folder -> Execute
 
 ## Licensing
 
