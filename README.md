@@ -1,5 +1,8 @@
 # Taquin <img src="./app/resources/img/logo.jpg" width="40" height="40">
 
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+![ProjectType](https://img.shields.io/badge/ProjectType-School-blue)
+
 <img src="./app/resources/img/synopsis.jpg">
 
 ## Description
