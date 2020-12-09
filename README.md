@@ -32,9 +32,3 @@ Le principe a été étendu à toutes sortes d'autres jeux. La plupart sont à b
 3. Open the file Taquin.pro with Qt Creator
 4. [Important] In Qt Creator, Right click on "core" folder -> Compile "Core"
 5. In Qt Creator, Right click on "app" or "console" or "tests" folder -> Execute
-
-## Licensing
-
-This app is Licensed under the GNU General Public License v3.0. See [LICENSE](LICENSE) for the full license text.
-
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
